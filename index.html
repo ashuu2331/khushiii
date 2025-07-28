@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WILL YOU BE MINE KHUSHIIII? 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: linear-gradient(135deg, #ffd5ec, #ffe6cc);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #d63384;
+      text-shadow: 2px 2px #fff0f5;
+      animation: pop 1s ease;
+      text-align: center;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .btn-container {
+      margin-top: 30px;
+    }
+
+    button {
+      background-color: #ff69b4;
+      border: none;
+      padding: 12px 25px;
+      margin: 10px;
+      font-size: 1.1em;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #ff85c1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      transform: rotate(45deg);
+      animation: float 5s infinite ease-in-out;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: pink;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    audio {
+      display: none;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="question">WILL YOU BE MY WIFIEE KHUSHIII? 💖</h1>
+  <div class="btn-container">
+    <button onclick="yesClicked()">Yes 💕</button>
+    <button onclick="noClicked()">No 😢</button>
+  </div>
+
+  <!-- Floating Hearts -->
+  <script>
+    for (let i = 0; i < 25; i++) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 2) + "s";
+      document.body.appendChild(heart);
+    }
+
+    let noClickCount = 0;
+    const noMessages = [
+      "Nooooo 🥺 please say yesssss 😢",
+      "Don't do this to me, lil one 😭",
+      "You're breaking my heart 💔",
+      "I'll wait forever for you darling 😔",
+      "Okay... but why babyy? 😞",
+      "Still waiting... 😣",
+      "You really are testing me 😤",
+      "SAY YES ALREADY MY LOVE 😭",
+      "Prettyyy please mommyyyyy? 😖",
+      "Okay now I'm cryinggg 😢",
+      "You know you want to say YES 😇"
+    ];
+
+    function yesClicked() {
+      document.getElementById("question").innerText = "YAYYYYYYY MY LOVEEEEEE!! I love you so much khushiiiiii<3💗💗💗";
+      document.querySelector(".btn-container").style.display = "none";
+      launchConfetti();
+    }
+
+    function noClicked() {
+      document.getElementById("question").innerText = noMessages[noClickCount % noMessages.length];
+      noClickCount++;
+    }
+  </script>
+
+  <!-- Confetti -->
+  <canvas id="confetti-canvas"></canvas>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    function launchConfetti() {
+      const duration = 4 * 1000;
+      const end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+  </script>
+
+  
+</body>
+</html>
